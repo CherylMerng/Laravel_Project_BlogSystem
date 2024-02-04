@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ArticleController;
 
 /*
@@ -31,3 +32,6 @@ Route::get('/articles/detail/{id}', function($id) {
     return  "Detail Page $id";
 } );
 */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
