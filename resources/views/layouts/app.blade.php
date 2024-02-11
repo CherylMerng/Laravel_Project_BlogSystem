@@ -29,8 +29,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    {{-- Day 3-4 --}}
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a href="{{ url("/articles/add") }}" class="nav-link text-success">
+                                Add Article
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

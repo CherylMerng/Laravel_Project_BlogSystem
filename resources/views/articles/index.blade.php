@@ -3,19 +3,26 @@
 @section('content')
     <div class="container" style="max-width: 800px">
 
+        {{-- Day 3-2 --}}
+        @if (session("info"))
+            <div class="alert alert-info">{{ session("info") }}</div>
+        @endif
+
         {{-- Day 2-4 --}}
         {{ $articles->links() }}
 
         @foreach ($articles as $article)
             <div class="card mb-2">
                 <div class="card-body">
-                    <h3>{{ $article->title }}</h3>
-                    <div>
-                        <small class="text-muted">
-                            {{ $article->created_at }}
-                        </small>
+                    <h5 class="card-title">{{ $article->title }}</h5>
+                    <div class="card-subtitle mb-2 text-muted small">
+                        {{ $article->created_at->diffForHumans() }}
                     </div>
-                    <div>{{ $article->body }}</div>
+                    <div class="mb-2">{{ $article->body }}</div>
+
+                    {{-- Day 3-1 --}}
+                    {{-- view detail link - route to /articles/detail/{id} --}}
+                    <a href="{{ url("/articles/detail/$article->id") }}" class="card-link">View Detail &raquo;</a>
                 </div>
             </div>
         @endforeach
