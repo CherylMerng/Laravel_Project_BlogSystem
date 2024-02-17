@@ -33,7 +33,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a href="{{ url("/articles/add") }}" class="nav-link text-success">
-                                Add Article
+                                + Add Article
                             </a>
                         </li>
                     </ul>

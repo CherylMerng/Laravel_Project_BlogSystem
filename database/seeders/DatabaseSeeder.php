@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
 
         // Day 2-2
         \App\Models\Article::factory(20)->create();
+        // Day 4-1
+        \App\Models\Comment::factory(40)->create();
+
+        $list = ['News', 'Tech', 'Web', 'Mobile', 'Lang'];
+
+        foreach($list as $name) {
+            \App\Models\Category::create(['name' => $name]);
+        }
     }
 }

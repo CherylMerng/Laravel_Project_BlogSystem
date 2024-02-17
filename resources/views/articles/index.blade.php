@@ -14,10 +14,24 @@
         @foreach ($articles as $article)
             <div class="card mb-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $article->title }}</h5>
-                    <div class="card-subtitle mb-2 text-muted small">
-                        {{ $article->created_at->diffForHumans() }}
+                    <h5 class="card-title">{{ $article->title }}</h5>                    
+                    {{-- Day 4 start --}}
+                    <div class="card-subtitle mb-2">
+                        <small class="text-muted">
+                            {{-- Day 4-2 --}}
+                            <b>Category:</b>
+                            <span class="text-success">
+                                {{ $article->category->name}},
+                            </span>
+                            {{-- Day 4-3 --}}
+                            <b>Comments:</b>
+                            <span class="text-primary">
+                                {{ count($article->comments)}}, 
+                            </span>
+                            {{ $article->created_at->diffForHumans() }}
+                        </small>
                     </div>
+                    {{-- Day 4 end --}}
                     <div class="mb-2">{{ $article->body }}</div>
 
                     {{-- Day 3-1 --}}

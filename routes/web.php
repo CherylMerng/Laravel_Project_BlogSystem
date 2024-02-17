@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;    // Day 2-3 - import ui package
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;     // Day 4-4, 4-5
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::get('/articles/delete/{id}', [ArticleController::class, 'delete']);
 // Day 3-4
 Route::get('/articles/add', [ArticleController::class, 'add']);
 Route::post('/articles/add', [ArticleController::class, 'create']);
+
+// Day 4-4
+Route::get('/comments/delete/{id}', [CommentController::class, 'delete']);
+// Day 4-5
+Route::post('/comments/add', [CommentController::class, 'create']);
 
 // Practice Routing
 /* 
