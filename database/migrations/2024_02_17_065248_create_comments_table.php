@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');        // Day 4-1
             $table->integer('article_id');  // Day 4-1
+            $table->integer('user_id');     // Day 5-2 authentication
             $table->timestamps();
         });
     }

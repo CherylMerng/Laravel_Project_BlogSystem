@@ -24,10 +24,24 @@ class DatabaseSeeder extends Seeder
         // Day 4-1
         \App\Models\Comment::factory(40)->create();
 
+        // Day 5-2 authentication
+        \App\Models\User::factory()->create([
+            'name' => 'Alice',
+            'email' => 'alice@gmail.com'
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Bob',
+            'email' => 'bob@gmail.com'
+        ]);
+
+        // Day 4-1
         $list = ['News', 'Tech', 'Web', 'Mobile', 'Lang'];
 
         foreach($list as $name) {
             \App\Models\Category::create(['name' => $name]);
         }
+
+        
     }
 }

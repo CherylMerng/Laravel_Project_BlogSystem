@@ -32,10 +32,13 @@ Route::get('/articles/delete/{id}', [ArticleController::class, 'delete']);
 // Day 3-4
 Route::get('/articles/add', [ArticleController::class, 'add']);
 Route::post('/articles/add', [ArticleController::class, 'create']);
+// Day 4-7 edit article
+Route::get('/articles/edit/{id}', [ArticleController::class, 'edit']);
+Route::post('/articles/edit/{id}', [ArticleController::class, 'update']);
 
-// Day 4-4
+// Day 4-4 delete comment
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete']);
-// Day 4-5
+// Day 4-5 create comment
 Route::post('/comments/add', [CommentController::class, 'create']);
 
 // Practice Routing

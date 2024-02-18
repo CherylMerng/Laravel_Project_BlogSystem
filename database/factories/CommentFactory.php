@@ -20,6 +20,7 @@ class CommentFactory extends Factory
             // Day 4-1
             'content' => $this->faker->paragraph(),
             'article_id'=> rand(1, 20),
+            'user_id' => rand(1, 2),    // Day 5-2 authentication
         ];
     }
 }

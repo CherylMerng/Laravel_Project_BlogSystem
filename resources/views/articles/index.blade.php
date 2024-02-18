@@ -17,13 +17,19 @@
                     <h5 class="card-title">{{ $article->title }}</h5>                    
                     {{-- Day 4 start --}}
                     <div class="card-subtitle mb-2">
+                        
+                        {{-- Day 5-3 authentication --}}
+                        <b class="text-success">
+                            {{ $article->user->name }}
+                        </b>,
+
                         <small class="text-muted">
-                            {{-- Day 4-2 --}}
+                            {{-- Day 4-2 show category model data --}}
                             <b>Category:</b>
                             <span class="text-success">
                                 {{ $article->category->name}},
                             </span>
-                            {{-- Day 4-3 --}}
+                            {{-- Day 4-3 show comment model data --}}
                             <b>Comments:</b>
                             <span class="text-primary">
                                 {{ count($article->comments)}}, 

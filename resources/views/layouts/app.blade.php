@@ -31,11 +31,14 @@
                     <!-- Left Side Of Navbar -->
                     {{-- Day 3-4 --}}
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a href="{{ url("/articles/add") }}" class="nav-link text-success">
-                                + Add Article
-                            </a>
-                        </li>
+                        {{-- Day 5-4 authorization logic in view --}}
+                        @auth
+                            <li class="nav-item">
+                                <a href="{{ url("/articles/add") }}" class="nav-link text-success">
+                                    + Add Article
+                                </a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
