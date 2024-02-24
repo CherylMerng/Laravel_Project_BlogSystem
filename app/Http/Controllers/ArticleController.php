@@ -118,12 +118,18 @@ class ArticleController extends Controller
         ]);
 
         $article = Article::find($id);
-        $article->title = request()->title;
-        $article->body = request()->body;
-        $article->category_id = request()->category_id;
-        $article->save();
-        
-        return redirect("/articles/detail/$id")->with("info", "Article Updated");
+
+        // Day 4-7 Auth
+        if (Gate::allows('edit-article', $article)) {
+            $article->title = request()->title;
+            $article->body = request()->body;
+            $article->category_id = request()->category_id;
+            $article->save();
+            
+            return redirect("/articles/detail/$id")->with("info", "Article Updated");
+        }
+
+        return back()->with("info", "Unauthorized");        
     }
     // Day 4-7 end - edit article
 }

@@ -30,5 +30,15 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == $comment->user_id
             or $user->id == $comment->article->user_id;
         });
+
+        // Day 4-7 Auth - edit article
+        Gate::define('edit-article', function($user, $article) {
+            return $user->id == $article->user_id;
+        });
+
+        Gate::define('edit-comment', function($user, $comment) {
+            return $user->id == $comment->user_id
+            or $user->id == $comment->article->user_id;
+        });
     }
 }

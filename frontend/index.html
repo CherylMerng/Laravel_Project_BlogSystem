@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>Category</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container" style="max-width: 600px;">
+            <a href="#" class="navbar-brand">Category</a>
+        </div>
+    </nav>
+    <div class="container" style="max-width: 600px;">
+        <div class="input-group my-4">
+            <input type="text" class="form-control">
+            <button class="btn btn-dark">Add</button>
+        </div>
+        <ul id="list" class="list-group"></ul>
+    </div>
+
+    <script>
+        /* Day 6-2 */
+        // Ajax, JQuery
+
+        // fetch() in Native JS - can write Ajax functions
+        // fetch(url).then(fn).catch(fn);
+        // fetch(api);
+        
+        /*
+        fetch(api).then(res => {    // response object
+            res.json().then(data => {   // convert response object into json
+                console.log(data);
+            })
+        });
+        */
+
+        /*
+        fetch(api)
+            .then(res => res.json())
+            .then(data => console.log(data));
+        */
+
+        const api = "http://localhost:8000/api/categories";
+
+        fetch(api)        
+            .then(res => res.json())
+            .then(data => data.map(category => createItem(category)));
+
+        function createItem(category) 
+        {
+            const li = document.createElement("li");
+            li.textContent = category.name;
+            document.querySelector("ul").appendChild(li);
+        }
+
+
+        /* Day 6-3 */
+        // API Authentication
+
+        // Test in Postman - POST /api/login - choose Auth > Bearer Token
+        /*
+        const api = "http://localhost:8000/api/categories";
+        const token = "";
+
+        fetch(api, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then(res => res.json())
+        .then(data => data.map(item => createItem(item)));
+        
+        document.querySelector("#add").onsubmit = e => { 
+            e.preventDefault(); 
+
+            const name = document.querySelector("input").value;
+
+            // fetch - method, url, data should be correct
+            fetch(api, {
+                method: 'POST',
+                body: JSON.stringify({ name }),
+                headers: {
+                    'Content-Type': 'application/josn',
+                    'Authorization': `Bearer ${token}`,
+                }
+            })
+            .then(res => res.json())
+            .then(item => createItem(item));
+
+            document.querySelector("input").value = "";
+            document.querySelector("input").focus();
+        }
+
+        function createItem(item) {
+            const li = document.createElement("li");
+            li.classList.add("list-group-item");
+            li.innerHTML = `<span>${item.name}</span>`;
+
+            // DELETE IN JS
+            const del = document.createElement("a");
+            del.setAttribute("href", "#");
+            del.classList.add("fa-solid", "fa-trash", "text-danger", "float-end");
+            del.onclick = () => {   // NEED TO WRITE TO DELETE IN DATABASE HERE
+
+                fetch(`${api}/${item.id}`, { 
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                });
+                
+                li.remove();     
+            }
+            li.appendChild(del);
+
+            // EDIT IN JS
+            const edit = document.createElement("a");
+            edit.setAttribute("href", "#");
+            edit.classList.add("fa-solid", "fa-edit", "me-2", "float-end");
+            edit.onclick = () => {
+                const currentName = li.querySelector("span").textContent;
+                const updateName = prompt('Enter name', currentName);
+
+                if(updateName) {
+                    fetch(`${api}/${item.id}`, {    // UPDATE IN DATABASE
+                        method: 'PUT',
+                        body: JSON.stringify({ name: updateName }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+
+                    li.querySelector("span").textContent = updateName;
+                }
+            }
+            li.appendChild(edit);
+
+            document.querySelector("#list").appendChild(li);
+        }
+        */
+
+        // LARAVEL AUTHENTICATION 
+            // cannot use cookie and session (if use, only browser can communicate)
+            // use token based authentication - if username and password, api gives access token (Laravel "Sanctum" Authentication Package)
+ 
+
+    </script>
+</body>
+</html>

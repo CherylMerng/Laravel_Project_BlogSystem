@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryApiController; // Day 6-1
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+// Day 6-1
+Route::apiResource('/categories', CategoryApiController::class);
+
 
 /*
 |--------------------------------------------------------------------------

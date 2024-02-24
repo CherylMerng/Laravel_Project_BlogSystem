@@ -47,10 +47,13 @@
                     </a>
                 @endcan
 
-                {{-- Day 4-7 edit article button --}}
-                <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-outline-danger">
-                    Edit
-                </a>
+                {{-- Day 4-7 auth - edit article button --}}
+                @can('edit-article', $article)
+                    <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-outline-danger">
+                        Edit
+                    </a>    
+                @endcan
+                
             </div>
         </div> {{-- card --}}
 
