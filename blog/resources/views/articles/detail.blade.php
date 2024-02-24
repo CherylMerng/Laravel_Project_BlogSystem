@@ -49,7 +49,7 @@
 
                 {{-- Day 4-7 auth - edit article button --}}
                 @can('edit-article', $article)
-                    <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-outline-danger">
+                    <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-outline-success">
                         Edit
                     </a>    
                 @endcan
@@ -68,9 +68,16 @@
                     {{-- Day 5-4 authorization logic in view --}}
                     @can('delete-comment', $comment)
                         {{-- Day 4-4 delete comment --}}
-                        <a href="{{ url("/comments/delete/$comment->id")}}" class="btn-close float-end"></a>    
-                    @endcan
+                        <a href="{{ url("/comments/delete/$comment->id")}}" class="btn-close float-end"></a> 
+                    @endcan    
 
+                    {{-- edit comment --}}
+                    @can('edit-comment', $comment)
+                        <a href="{{ url("/comments/edit/$comment->id") }}" class="btn-edit float-end">
+                            Edit
+                        </a>                
+                    @endcan
+                    
                     {{-- Day 5-3 authentication --}}
                     <b>
                         {{ $comment->user->name }}

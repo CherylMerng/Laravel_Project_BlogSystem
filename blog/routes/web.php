@@ -40,6 +40,9 @@ Route::post('/articles/edit/{id}', [ArticleController::class, 'update']);
 Route::get('/comments/delete/{id}', [CommentController::class, 'delete']);
 // Day 4-5 create comment
 Route::post('/comments/add', [CommentController::class, 'create']);
+// edit comment
+Route::get('/comments/edit/{id}', [CommentController::class, 'edit']);
+Route::post('/comments/edit/{id}', [CommentController::class, 'update']);
 
 // Practice Routing
 /* 

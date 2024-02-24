@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Comment;     // Day 4-4
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;    // Day 5-4 authorization logic
@@ -60,4 +61,40 @@ class CommentController extends Controller
     // $article->save();   // save Article object
     
     // return redirect("/articles");
+
+
+    // edit comment start
+    public function edit($id) {
+        $comment = Comment::find($id);
+        $articles = Article::all();
+
+        return view("/comments.edit", [
+            'comment' => $comment,
+            'articles' => $articles,
+        ]);
+    }
+
+    public function update($id, Request $request) {
+
+        $validator = validator(request()->all(), [
+            "content" => "required",
+            "article_id" => "required",
+        ]);
+
+        // How to get article id here??
+
+        $comment = Comment::find($id);
+
+        if (Gate::allows('edit-comment', $comment)) {
+            $comment->content = request()->content;
+            $comment->article_id = request()->article_id;
+            $comment->save();
+
+            return redirect("/articles/detail/$id")->with("info", "Comment Updated");
+        }
+
+        return back()->with("info", "Unauthorized");
+    }
+    // edit comment end
+
 }
